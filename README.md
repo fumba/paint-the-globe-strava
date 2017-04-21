@@ -1,0 +1,1 @@
+# paint-the-globe-strava
