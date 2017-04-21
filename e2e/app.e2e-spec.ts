@@ -1,15 +1,14 @@
-import { browser, element, by } from 'protractor';
+import { PaintTheGlobeStravaPage } from './app.po';
 
-describe('QuickStart E2E Tests', function () {
+describe('paint-the-globe-strava App', () => {
+  let page: PaintTheGlobeStravaPage;
 
-  let expectedMsg = 'Hello Angular';
-
-  beforeEach(function () {
-    browser.get('');
+  beforeEach(() => {
+    page = new PaintTheGlobeStravaPage();
   });
 
-  it('should display: ' + expectedMsg, function () {
-    expect(element(by.css('h1')).getText()).toEqual(expectedMsg);
+  it('should display message saying app works', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toEqual('app works!');
   });
-
 });
