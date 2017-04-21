@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "heroku-prebuild": "npm install -g http-server",
-  "heroku-postbuild": "ng build --prod",
-  "start": "http-server dist/",
+    "heroku-postbuild": "ng build --prod",
+    "start": "http-server dist/",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -32,7 +32,6 @@
     "typescript": "~2.2.0"
   },
   "devDependencies": {
-    
     "codelyzer": "~2.0.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
@@ -45,6 +44,5 @@
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0"
-    
   }
 }
