@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'paint the globe - strava!';
-  mode = 'usa';
+  mode: Mode = { name: 'usa' };
+  title:String = 'paint the globe - strava!';
+}
+export class Mode {
+  name: string;
 }
