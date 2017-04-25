@@ -8,7 +8,17 @@
 
 <h2>Activities</h2>
 <ul class="activities">
-    <li *ngFor="let activity of activities">
+    <li *ngFor="let activity of activities" [class.selected]="activity === selectedActivity" (click)="onSelect(activity)">
         <span class="badge">{{activity.id}}</span> {{activity.title}}
     </li>
 </ul>
+
+
+<div *ngIf="selectedActivity">
+    <h2>{{selectedActivity.title}} details!</h2>
+    <div><label>id: </label>{{selectedActivity.id}}</div>
+    <div>
+        <label>include: </label>
+        <input type="checkbox" [(ngModel)]="selectedActivity.include" />
+    </div>
+</div>
