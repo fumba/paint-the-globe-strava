@@ -6,9 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  mode: Mode = { name: 'usa' };
+  mode: Mode = { name: 'usa', selected:false };
   title:String = 'paint the globe - strava!';
 }
 export class Mode {
   name: string;
+  selected: Boolean;
 }

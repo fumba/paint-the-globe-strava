@@ -1,2 +1,7 @@
 <h1>{{title}}</h1>
 <h2>Mode : {{mode.name}}</h2>
+<div>
+    <label>selected: </label> {{mode.selected}}
+    <br>
+    <input type="checkbox" [(ngModel)]="mode.selected">
+</div>
