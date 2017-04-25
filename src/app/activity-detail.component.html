@@ -1,0 +1,8 @@
+<div *ngIf="activity">
+    <h2>{{activity.title}} details!</h2>
+    <div><label>id: </label>{{activity.id}}</div>
+    <div>
+        <label>include: </label>
+        <input type="checkbox" [(ngModel)]="activity.include" />
+    </div>
+</div>

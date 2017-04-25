@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Activity } from './activity';
+import { Mode } from './mode';
 
 //app-root component
 @Component({
@@ -17,21 +19,7 @@ export class AppComponent {
   onSelect(activity: Activity): void {
     this.selectedActivity = activity;
   }
-
-}
-
-//Mode selected by the user
-export class Mode {
-  name: string;
-  selected: Boolean;
-}
-
-//User activity
-export class Activity {
-  id: Number;
-  title: string;
-  include: Boolean;
-}
+};
 
 //List of activities by the user
 const ACTIVITIES: Activity[] = [
