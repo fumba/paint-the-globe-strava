@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Activity } from './activity';
-import { Mode } from './mode';
+import { Activity } from './activity/activity';
+import { Mode } from './mode/mode';
 
 //app-root component
 @Component({

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ActivityDetailComponent } from './activity-detail.component';
+import { ActivityDetailComponent } from './activity/activity-detail.component';
 
 @NgModule({
   declarations: [
