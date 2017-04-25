@@ -5,3 +5,10 @@
     <br>
     <input type="checkbox" [(ngModel)]="mode.selected">
 </div>
+
+<h2>Activities</h2>
+<ul class="activities">
+    <li *ngFor="let activity of activities">
+        <span class="badge">{{activity.id}}</span> {{activity.title}}
+    </li>
+</ul>
