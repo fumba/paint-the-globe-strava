@@ -6,8 +6,11 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ActivityComponent } from '../activity/activity.component';
 import { ActivityDetailComponent } from '../activity/activity-detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
+
+
   declarations: [
     AppComponent,
     ActivityDetailComponent,
@@ -16,9 +19,15 @@ import { ActivityDetailComponent } from '../activity/activity-detail.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    RouterModule.forRoot([
+      {
+        path: 'activities',
+        component: ActivityComponent
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
