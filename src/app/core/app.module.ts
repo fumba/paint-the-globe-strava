@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ActivityDetailComponent } from './activity/activity-detail.component';
+import { ActivityComponent } from '../activity/activity.component';
+import { ActivityDetailComponent } from '../activity/activity-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ActivityDetailComponent
+    ActivityDetailComponent,
+    ActivityComponent
   ],
   imports: [
     BrowserModule,

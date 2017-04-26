@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
-import { Activity } from './activity/activity';
-import { Mode } from './mode/mode';
-import { ActivityService } from './activity/activity.service';
+import { Activity } from './activity';
+import { Mode } from '../shared/mode';
+import { ActivityService } from '../shared/activity.service';
 import { OnInit } from '@angular/core';
 
 
-//app-root component
+//activities component
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: 'activities',
+  templateUrl: './activity.component.html',
+  styleUrls: ['./activity.component.css'],
   providers: [ActivityService]
 })
 
-export class AppComponent implements OnInit {
+export class ActivityComponent implements OnInit {
   mode: Mode = { name: 'usa', selected: false };
   title: String = 'paint the globe - strava!';
   activities: Activity[];
