@@ -4,6 +4,7 @@ import { Mode } from '../shared/mode';
 import { ActivityService } from '../shared/activity.service';
 import { OnInit } from '@angular/core';
 
+import { Router} from '@angular/router';
 
 //activities component
 @Component({
@@ -19,7 +20,11 @@ export class ActivityComponent implements OnInit {
   activities: Activity[];
   selectedActivity: Activity;
 
-  constructor(private activityService: ActivityService) { }
+  constructor(
+    private activityService: ActivityService,
+    private router:Router
+  )
+  { }
 
   ngOnInit(): void {
     this.getActivities();
@@ -34,5 +39,10 @@ export class ActivityComponent implements OnInit {
   getActivities(): void {
     this.activityService.getActivities().then(activities => this.activities = activities);
   }
+
+  gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedActivity.id]);
+  }
+
 
 };

@@ -9,8 +9,9 @@ import { ActivityDetailComponent } from '../activity/activity-detail.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
-@NgModule({
+import { AppRoutingModule }     from '../core/app-routing.module';
 
+@NgModule({
 
   declarations: [
     AppComponent,
@@ -18,26 +19,10 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
     ActivityComponent,
     DashboardComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: 'activities',
-        component: ActivityComponent
-      }, {
-        path: 'dashboard',
-        component: DashboardComponent
-      }, {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'detail/:id',
-        component: ActivityDetailComponent
-      },
-    ])
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
