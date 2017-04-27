@@ -8,4 +8,10 @@ export class ActivityService {
     getActivities(): Promise<Activity[]> {
         return Promise.resolve(ACTIVITIES);
     }
+
+    getActivity(id: number): Promise<Activity> {
+        return this.getActivities()
+            .then(activities => activities.find(activity => activity.id === id));
+    }
+
 }

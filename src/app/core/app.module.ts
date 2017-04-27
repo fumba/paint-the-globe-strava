@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ActivityComponent } from '../activity/activity.component';
 import { ActivityDetailComponent } from '../activity/activity-detail.component';
 import { RouterModule } from '@angular/router';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @NgModule({
 
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
     AppComponent,
     ActivityDetailComponent,
-    ActivityComponent
+    ActivityComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,18 @@ import { RouterModule } from '@angular/router';
       {
         path: 'activities',
         component: ActivityComponent
-      }
+      }, {
+        path: 'dashboard',
+        component: DashboardComponent
+      }, {
+        path: '',
+        redirectTo: '/dashboard',
+        pathMatch: 'full'
+      },
+      {
+        path: 'detail/:id',
+        component: ActivityDetailComponent
+      },
     ])
   ],
   providers: [],
