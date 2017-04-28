@@ -10,6 +10,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
     selector: 'activity-detail',
     templateUrl: './activity-detail.component.html',
+    styleUrls: [ './activity-detail.component.css' ],
     providers: [ActivityService]
 })
 export class ActivityDetailComponent implements OnInit {
