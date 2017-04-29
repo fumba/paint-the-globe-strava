@@ -8,8 +8,13 @@ import { ActivityComponent } from '../activity/activity.component';
 import { ActivityDetailComponent } from '../activity/activity-detail.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import {ActivityService} from '../shared/activity.service';
 
 import { AppRoutingModule }     from '../core/app-routing.module';
+
+//imports fpr loading and configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 @NgModule({
 
@@ -22,9 +27,10 @@ import { AppRoutingModule }     from '../core/app-routing.module';
   imports: [ 
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
   ],
-  providers: [],
+  providers: [ActivityService],
   bootstrap: [AppComponent]
 })
 
