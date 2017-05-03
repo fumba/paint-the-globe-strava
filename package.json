@@ -30,7 +30,8 @@
     "@angular/compiler-cli": "^4.0.0",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
-    "typescript": "~2.2.0"
+    "typescript": "~2.2.0",
+    "strava-v3": "~1.14.0"
   },
   "devDependencies": {
     "codelyzer": "~2.0.0",
