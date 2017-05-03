@@ -1,0 +1,9 @@
+<div id="search-component">
+    <h4>Activity Search</h4>
+    <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+    <div>
+        <div *ngFor="let activity of activities | async" (click)="gotoDetail(activity)" class="search-result">
+            {{activity.title}}
+        </div>
+    </div>
+</div>

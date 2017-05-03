@@ -16,13 +16,16 @@ import { AppRoutingModule }     from '../core/app-routing.module';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService }  from './in-memory-data.service';
 
-@NgModule({
+import {ActivitySearchComponent} from '../activity/activity-search.component';
+
+@NgModule({ 
 
   declarations: [
     AppComponent,
     ActivityDetailComponent,
     ActivityComponent,
-    DashboardComponent
+    DashboardComponent,
+    ActivitySearchComponent
   ],
   imports: [ 
     BrowserModule,

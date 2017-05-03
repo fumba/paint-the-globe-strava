@@ -40,4 +40,22 @@ export class ActivityService {
             .catch(this.handleError);
     }
 
+    create(title: string): Promise<Activity> {
+        return this.http
+            .post(this.activitiesurl, JSON.stringify({ title: title }), { headers: this.headers })
+            .toPromise()
+            .then(res => res.json().data as Activity)
+            .catch(this.handleError);
+    }
+
+    delete(id: Number): Promise<void> {
+        const url = `${this.activitiesurl}/${id}`;
+        return this.http.delete(url, { headers: this.headers })
+            .toPromise()
+            .then(() => null)
+            .catch(this.handleError);
+    }
+
+
+
 }

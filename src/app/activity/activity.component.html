@@ -1,7 +1,9 @@
 <h2>Activities</h2>
 <ul class="activities">
     <li *ngFor="let activity of activities" [class.selected]="activity === selectedActivity" (click)="onSelect(activity)">
-        <span class="badge">{{activity.id}}</span> {{activity.title}}
+        <span class="badge">{{activity.id}}</span>
+        <span> {{activity.title}}</span>
+        <button class="delete" (click)="delete(activity); $event.stopPropagation()">x</button>
     </li>
 </ul>
 
@@ -10,4 +12,11 @@
         {{selectedActivity.title | uppercase}}
     </h2>
     <button (click)="gotoDetail()">View Details</button>
+</div>
+
+<div>
+    <label>Activity title:</label> <input #activityTitle />
+    <button (click)="add(activityTitle.value); activityTitle.value=''">
+    Add
+  </button>
 </div>
