@@ -10,7 +10,7 @@ import 'rxjs/add/operator/switchMap';
 @Component({
     selector: 'activity-detail',
     templateUrl: './activity-detail.component.html',
-    styleUrls: [ './activity-detail.component.css' ],
+    styleUrls: ['./activity-detail.component.css'],
     providers: [ActivityService]
 })
 export class ActivityDetailComponent implements OnInit {
@@ -30,5 +30,11 @@ export class ActivityDetailComponent implements OnInit {
     goBack(): void {
         this.location.back();
     }
+
+    save(): void {
+        this.activityService.update(this.activity)
+            .then(() => this.goBack());
+    }
+
 
 }

@@ -3,7 +3,7 @@ export class InMemoryDataService implements InMemoryDbService {
     createDb() {
         //List of activities by the user
         let activities = [
-            { id: 11, title: 'run 1', include: true },
+            { id: 11, title: '- run 1', include: true },
             { id: 12, title: 'bike 1', include: true },
             { id: 13, title: 'walk 1', include: true },
             { id: 14, title: 'run 2', include: true },
