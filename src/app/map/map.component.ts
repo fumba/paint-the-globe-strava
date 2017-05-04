@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare var require: any;
+declare let require: any;
 
 @Component({
     selector: 'map',
@@ -8,9 +8,21 @@ declare var require: any;
 })
 export class MapComponent implements OnInit {
 
+    private strava: any;
+
+    constructor() {
+        this.strava = require('strava-v3');
+    }
 
     ngOnInit(): void {
-        var strava = require('strava-v3');
-        console.log(strava);
+        this.strava.athlete.get({}, (err: any, payload: any, limits: any) => {
+            if (!err) {
+                console.log(payload);
+            }
+            else {
+                console.log(err);
+            }
+        });
+
     }
 }
