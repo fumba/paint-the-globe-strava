@@ -8,26 +8,28 @@ import { ActivityComponent } from '../activity/activity.component';
 import { ActivityDetailComponent } from '../activity/activity-detail.component';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import {ActivityService} from '../shared/activity.service';
+import { ActivityService } from '../shared/activity.service';
+import { MapComponent } from '../map/map.component';
 
-import { AppRoutingModule }     from '../core/app-routing.module';
+import { AppRoutingModule } from '../core/app-routing.module';
 
 //imports fpr loading and configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
+import { InMemoryDataService } from './in-memory-data.service';
 
-import {ActivitySearchComponent} from '../activity/activity-search.component';
+import { ActivitySearchComponent } from '../activity/activity-search.component';
 
-@NgModule({ 
+@NgModule({
 
   declarations: [
     AppComponent,
     ActivityDetailComponent,
     ActivityComponent,
     DashboardComponent,
-    ActivitySearchComponent
+    ActivitySearchComponent,
+    MapComponent
   ],
-  imports: [ 
+  imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
