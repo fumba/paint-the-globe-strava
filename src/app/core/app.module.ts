@@ -18,6 +18,16 @@ import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory-data.service';
 
 import { ActivitySearchComponent } from '../activity/activity-search.component';
+import { Config } from './app.config';
+
+export function declarations() {
+  return  Config.getInstance('/assets/config/strava.config.json');
+}
+
+export let configProvider =
+  { provide: Config,
+    useFactory: declarations
+  };
 
 @NgModule({
 
@@ -36,7 +46,7 @@ import { ActivitySearchComponent } from '../activity/activity-search.component';
     HttpModule,
     InMemoryWebApiModule.forRoot(InMemoryDataService)
   ],
-  providers: [ActivityService],
+  providers: [ActivityService, configProvider],
   bootstrap: [AppComponent]
 })
 
