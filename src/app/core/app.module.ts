@@ -20,13 +20,13 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { ActivitySearchComponent } from '../activity/activity-search.component';
 import { Config } from './app.config';
 
-export function declarations() {
+export function getConfigInstance() {
   return  Config.getInstance('/assets/config/strava.config.json');
 }
 
 export let configProvider =
   { provide: Config,
-    useFactory: declarations
+    useFactory: getConfigInstance
   };
 
 @NgModule({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Activity } from '../activity/activity';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, URLSearchParams  } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -57,5 +57,19 @@ export class ActivityService {
     }
 
 
+    getToken(code: string, client_id:string, client_secret:string): Promise<any> {
+        const url = "https://www.strava.com/oauth/token";
+        let urlSearchParams = new URLSearchParams();
+urlSearchParams.append('client_id', client_id);
+urlSearchParams.append('client_secret', client_secret);
+urlSearchParams.append('code', code);
+let body = urlSearchParams.toString()
+console.log(body);
+        return this.http
+            .post(url, body, { headers: this.headers })
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
+    }
 
 }
