@@ -21,11 +21,12 @@ import { ActivitySearchComponent } from '../activity/activity-search.component';
 import { Config } from './app.config';
 
 export function getConfigInstance() {
-  return  Config.getInstance('/assets/config/strava.config.json');
+  return Config.getInstance('/assets/config/strava.config.json');
 }
 
 export let configProvider =
-  { provide: Config,
+  {
+    provide: Config,
     useFactory: getConfigInstance
   };
 
@@ -44,7 +45,7 @@ export let configProvider =
     FormsModule,
     AppRoutingModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true })
   ],
   providers: [ActivityService, configProvider],
   bootstrap: [AppComponent]
