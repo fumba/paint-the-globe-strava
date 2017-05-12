@@ -20,7 +20,7 @@ export class Config {
                         resolve();
                     }
                     else {
-                        reject(`Could not load file '${jsonFile}': ${xobj.status}`);
+                        //reject(`Could not load file '${jsonFile}': ${xobj.status}`);
                     }
                 }
             }
