@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { isDevMode } from '@angular/core';
 
 @Injectable()
 export class Config {
@@ -9,6 +10,9 @@ export class Config {
     constructor(private data: any) { }
 
     public static loadInstance(jsonFile: string) {
+        console.log(isDevMode());
+       
+
         return new Promise((resolve, reject) => {
             var xobj = new XMLHttpRequest();
             xobj.overrideMimeType("application/json");
@@ -20,7 +24,7 @@ export class Config {
                         resolve();
                     }
                     else {
-                        //reject(`Could not load file '${jsonFile}': ${xobj.status}`);
+                        reject(`Could not load file '${jsonFile}': ${xobj.status}`);
                     }
                 }
             }
