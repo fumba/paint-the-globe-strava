@@ -4,9 +4,6 @@ import { Config } from "../core/app.config";
 
 import { ActivityService } from '../shared/activity.service';
 
-declare let require: any;
-declare let process: any;
-
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
@@ -15,22 +12,23 @@ declare let process: any;
 })
 export class MapComponent implements OnInit {
 
-    private strava_api: any;
     private code: string;
-    private access_token: String;
+
+    private access_token: string;
+    private client_secret: string;
+    private client_id: string;
+    private redirect_url: string;
 
     public strava_payload: any;
 
-    constructor(private activatedRoute: ActivatedRoute, private config: Config,  private activityService: ActivityService) {
-        this.strava_api = require('strava-v3');
+    constructor(private activatedRoute: ActivatedRoute, private config: Config, private activityService: ActivityService) {
     }
 
     ngOnInit(): void {
-        //this.title = "test";
-        process.env.STRAVA_ACCESS_TOKEN = this.config.get("access_token");
-        process.env.STRAVA_CLIENT_SECRET = this.config.get("client_secret");
-        process.env.STRAVA_CLIENT_ID = this.config.get("client_id");
-        process.env.STRAVA_REDIRECT_URI = this.config.get("redirect_uri");
+        this.access_token = this.config.get("access_token");
+        this.client_secret = this.config.get("client_secret");
+        this.client_id = this.config.get("client_id");
+        this.redirect_url = this.config.get("redirect_uri");
 
         // subscribe to router event and capture code value
         this.activatedRoute
@@ -39,17 +37,8 @@ export class MapComponent implements OnInit {
                 this.code = params['code'];
             });
 
-        this.activityService.getToken(this.code, process.env.STRAVA_CLIENT_ID,  process.env.STRAVA_CLIENT_SECRET );
-
-      /**  this.strava_api.oauth.getToken(this.code, (err: any, payload: any, limits: any) => {
-            if (!err) {
-                this.strava_payload = payload;
-                this.access_token = payload.access_token;
-            }
-            else {
-                console.log(err);
-            }
-        }); **/
+        this.activityService.getToken(this.code, this.client_id, this.client_secret).then(
+            (data) => { this.strava_payload = JSON.stringify(data); console.log(data) });
 
     }
 }

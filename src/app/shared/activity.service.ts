@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Activity } from '../activity/activity';
-import { Headers, Http, URLSearchParams  } from '@angular/http';
+import { Headers, Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
@@ -34,7 +34,7 @@ export class ActivityService {
     update(activity: Activity): Promise<Activity> {
         const url = `${this.activitiesurl}/${activity.id}`;
         return this.http
-            .put(url, JSON.stringify(activity), { headers: this.headers })
+            .put(url, JSON.stringify(activity), {})
             .toPromise()
             .then(() => activity)
             .catch(this.handleError);
@@ -57,18 +57,18 @@ export class ActivityService {
     }
 
 
-    getToken(code: string, client_id:string, client_secret:string): Promise<any> {
-        const url = "https://www.strava.com/oauth/token";
+    getToken(code: string, client_id: string, client_secret: string): Promise<any> {
+        let url: string = "https://www.strava.com/oauth/token?";
         let urlSearchParams = new URLSearchParams();
-urlSearchParams.append('client_id', client_id);
-urlSearchParams.append('client_secret', client_secret);
-urlSearchParams.append('code', code);
-let body = urlSearchParams.toString()
-console.log(body);
+        urlSearchParams.append('client_id', client_id);
+        urlSearchParams.append('client_secret', client_secret);
+        urlSearchParams.append('code', code);
+        url = url.concat(urlSearchParams.toString());
+        console.log(url);
         return this.http
-            .post(url, body, { headers: this.headers })
+            .post(url, {}, { headers: this.headers })
             .toPromise()
-            .then(res => res.json().data)
+            .then(res => res.json())
             .catch(this.handleError);
     }
 
