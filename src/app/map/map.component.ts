@@ -38,7 +38,7 @@ export class MapComponent implements OnInit {
             });
 
         this.activityService.getToken(this.code, this.client_id, this.client_secret).then(
-            (data) => { this.strava_payload = JSON.stringify(data); console.log(data) });
+            (data) => { this.strava_payload = JSON.stringify(data);});
 
     }
 }

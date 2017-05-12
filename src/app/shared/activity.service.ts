@@ -62,9 +62,8 @@ export class ActivityService {
         let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('client_id', client_id);
         urlSearchParams.append('client_secret', client_secret);
-        urlSearchParams.append('code', code);
+        urlSearchParams.append('code', code); 
         url = url.concat(urlSearchParams.toString());
-        console.log(url);
         return this.http
             .post(url, {}, { headers: this.headers })
             .toPromise()
