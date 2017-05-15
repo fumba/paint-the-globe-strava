@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Activity } from '../activity/activity';
+import {StravaActivity}  from '../strava_lib/strava.activity'
 import { Headers, Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
@@ -62,12 +63,26 @@ export class ActivityService {
         let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('client_id', client_id);
         urlSearchParams.append('client_secret', client_secret);
-        urlSearchParams.append('code', code); 
+        urlSearchParams.append('code', code);
         url = url.concat(urlSearchParams.toString());
         return this.http
             .post(url, {}, { headers: this.headers })
             .toPromise()
             .then(res => res.json())
+            .catch(this.handleError);
+    }
+
+    //Retrieves all user activities
+    getUserActivities(access_token: string, page_count: Number): Promise<any> {
+        let url: string = "https://www.strava.com/api/v3/athlete/activities?";
+        let urlSearchParams = new URLSearchParams();
+        urlSearchParams.append('access_token', access_token);
+        urlSearchParams.append('page', page_count.toString());
+        url = url.concat(urlSearchParams.toString());
+        console.log(url);
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json() as StravaActivity)
             .catch(this.handleError);
     }
 

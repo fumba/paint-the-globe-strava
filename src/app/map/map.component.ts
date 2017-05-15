@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Config } from "../core/app.config";
 
 import { ActivityService } from '../shared/activity.service';
-
+import { StravaActivity } from '../strava_lib/strava.activity';
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
@@ -19,10 +19,11 @@ export class MapComponent implements OnInit {
     private client_id: string;
     private redirect_url: string;
 
-    public strava_payload: any;
+    public strava_payload: Array<StravaActivity>;
 
     constructor(private activatedRoute: ActivatedRoute, private config: Config, private activityService: ActivityService) {
     }
+
 
     ngOnInit(): void {
         this.access_token = this.config.get("access_token");
@@ -38,7 +39,17 @@ export class MapComponent implements OnInit {
             });
 
         this.activityService.getToken(this.code, this.client_id, this.client_secret).then(
-            (data) => { this.strava_payload = JSON.stringify(data);});
-
+            data => this.retrieveActivities(data));
     }
+
+    retrieveActivities(data: any) {
+        let access_token = data.access_token;
+        let last_page_reached = false;
+        let page_count = 1;
+        //while (!last_page_reached) {
+            this.activityService.getUserActivities(access_token, page_count).then(data => {this.strava_payload = data; last_page_reached = true;});
+        //}
+    }
+
+
 }

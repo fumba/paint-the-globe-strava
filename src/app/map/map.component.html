@@ -1,1 +1,5 @@
-<div>{{strava_payload}}</div>
+<ul>
+    <li *ngFor="let activity of strava_payload let i= index;">
+        <div>{{i + 1}} : {{activity.id}} - {{activity.start_date}}</div>
+    </li>
+</ul>
