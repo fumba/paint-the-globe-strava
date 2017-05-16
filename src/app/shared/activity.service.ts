@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Activity } from '../activity/activity';
-import {StravaActivity}  from '../strava_lib/strava.activity'
+import { StravaActivity } from '../strava_lib/strava.activity'
 import { Headers, Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import { isDevMode } from '@angular/core';
 
 @Injectable()
 export class ActivityService {
@@ -59,12 +60,20 @@ export class ActivityService {
 
 
     getToken(code: string, client_id: string, client_secret: string): Promise<any> {
+         let url: string;
+        if (isDevMode()) {
+            url = "api/strava_token";
+        } else {
         let url: string = "https://www.strava.com/oauth/token?";
         let urlSearchParams = new URLSearchParams();
         urlSearchParams.append('client_id', client_id);
         urlSearchParams.append('client_secret', client_secret);
         urlSearchParams.append('code', code);
         url = url.concat(urlSearchParams.toString());
+    }
+    
+    console.log(url);
+    
         return this.http
             .post(url, {}, { headers: this.headers })
             .toPromise()
@@ -73,16 +82,27 @@ export class ActivityService {
     }
 
     //Retrieves all user activities
-    getUserActivities(access_token: string, page_count: Number): Promise<any> {
-        let url: string = "https://www.strava.com/api/v3/athlete/activities?";
-        let urlSearchParams = new URLSearchParams();
-        urlSearchParams.append('access_token', access_token);
-        urlSearchParams.append('page', page_count.toString());
-        url = url.concat(urlSearchParams.toString());
-        console.log(url);
+    getUserActivities(access_token: string, page_count: Number): Promise<StravaActivity[]> {
+
+        let url: string;
+        if (isDevMode()) {
+            url = "api/strava_data";
+        } else {
+            url = "https://www.strava.com/api/v3/athlete/activities?";
+            let urlSearchParams = new URLSearchParams();
+            urlSearchParams.append('access_token', access_token);
+            urlSearchParams.append('page', page_count.toString());
+            url = url.concat(urlSearchParams.toString());
+        }
         return this.http.get(url)
             .toPromise()
-            .then(response => response.json() as StravaActivity)
+            .then(response => {
+                if (isDevMode()) {
+                    return (response.json().data as StravaActivity[]);
+                } else {
+                    return (response.json() as StravaActivity[]);
+                }
+            })
             .catch(this.handleError);
     }
 

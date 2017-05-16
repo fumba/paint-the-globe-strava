@@ -47,10 +47,10 @@ export class StravaActivity {
     timezone: string;
 
     //[latitude, longitude]
-    start_latlng: Array<string>;
+    start_latlng: [string, string];
 
     //[latitude, longitude]
-    end_latlng: Array<string>;
+    end_latlng: [string, string];
 
     location_city: string;
 
