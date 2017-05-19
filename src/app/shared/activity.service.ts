@@ -60,20 +60,18 @@ export class ActivityService {
 
 
     getToken(code: string, client_id: string, client_secret: string): Promise<any> {
-         let url: string;
+        let url: string;
         if (isDevMode()) {
             url = "api/strava_token";
         } else {
-        let url: string = "https://www.strava.com/oauth/token?";
-        let urlSearchParams = new URLSearchParams();
-        urlSearchParams.append('client_id', client_id);
-        urlSearchParams.append('client_secret', client_secret);
-        urlSearchParams.append('code', code);
-        url = url.concat(urlSearchParams.toString());
-    }
-    
-    console.log(url);
-    
+            url = "https://www.strava.com/oauth/token?";
+            let urlSearchParams = new URLSearchParams();
+            urlSearchParams.append('client_id', client_id);
+            urlSearchParams.append('client_secret', client_secret);
+            urlSearchParams.append('code', code);
+            url = url.concat(urlSearchParams.toString());
+        }
+
         return this.http
             .post(url, {}, { headers: this.headers })
             .toPromise()

@@ -45,7 +45,7 @@ export class MapComponent implements OnInit {
             });
 
         this.activityService.getToken(this.code, this.client_id, this.client_secret)
-            .then(data => this.retrieveActivities(data));
+            .then(access_token => this.retrieveActivities(access_token));
     }
 
     //Make multuiple async calls to retrieve all the client activities
