@@ -6,6 +6,8 @@ import { ActivityService } from '../shared/activity.service';
 import { StravaActivity } from '../strava_lib/strava.activity';
 import { isDevMode } from '@angular/core';
 
+import { AcessToken} from '../strava_lib/access.token';
+
 @Component({
     selector: 'map',
     templateUrl: './map.component.html',
@@ -16,7 +18,6 @@ export class MapComponent implements OnInit {
 
     private code: string;
 
-    private access_token: string;
     private client_secret: string;
     private client_id: string;
     private redirect_url: string;
@@ -32,7 +33,6 @@ export class MapComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.access_token = this.config.get("access_token");
         this.client_secret = this.config.get("client_secret");
         this.client_id = this.config.get("client_id");
         this.redirect_url = this.config.get("redirect_uri");
@@ -49,14 +49,12 @@ export class MapComponent implements OnInit {
     }
 
     //Make multuiple async calls to retrieve all the client activities
-    async retrieveActivities(data: any): Promise<void> {
-
-        this.access_token = data.access_token;
+    async retrieveActivities(token:  AcessToken): Promise<void> {
         this.strava_payload = [];
         this.last_page_reached = false;
         let page_count = 1;
         while (!this.last_page_reached) {
-            await this.activityService.getUserActivities(this.access_token, page_count++)
+            await this.activityService.getUserActivities(token.access_token, page_count++)
                 .then(data => { this.processResponse(data); });
         }
     }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Activity } from '../activity/activity';
-import { StravaActivity } from '../strava_lib/strava.activity'
+import { StravaActivity } from '../strava_lib/strava.activity';
+import { AcessToken} from '../strava_lib/access.token';
 import { Headers, Http, URLSearchParams } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { isDevMode } from '@angular/core';
@@ -59,7 +60,7 @@ export class ActivityService {
     }
 
 
-    getToken(code: string, client_id: string, client_secret: string): Promise<any> {
+    getToken(code: string, client_id: string, client_secret: string): Promise<AcessToken> {
         let url: string;
         if (isDevMode()) {
             url = "api/strava_token";
@@ -75,7 +76,7 @@ export class ActivityService {
         return this.http
             .post(url, {}, { headers: this.headers })
             .toPromise()
-            .then(res => res.json())
+            .then(res => res.json() as AcessToken)
             .catch(this.handleError);
     }
 
